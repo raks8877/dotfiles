@@ -1,4 +1,3 @@
-; vim:ft=dosini
 ;=====================================================
 ;
 ;   To learn more about how to configure Polybar
@@ -10,7 +9,7 @@
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #000
+background = #222
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -18,17 +17,14 @@ foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
-col = #00f
 
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
-;monitor = ${env:MONITOR}
-monitor = ${env:MONITOR:eDP1}
 width = 100%
-height = 24
+height = 27
 ;offset-x = 1%
 ;offset-y = 1%
-;radius = 6.0
+radius = 6.0
 fixed-center = false
 
 background = ${colors.background}
@@ -37,25 +33,35 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 0
+border-size = 4
 border-color = #00000000
 
-padding-left = 0
-padding-right = 0
+padding-left = 2
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = mono:pixelsize=11;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=11;1
+;font-0 = fixed:pixelsize=10;1
+;font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+;font-2 = siji:pixelsize=10;1
+font-0 = NotoSans-Regular:size=10;0
+font-1 = MaterialIcons:size=10;0
+font-2 = Termsynu:size=10;-1
+font-3 = FontAwesome:size=10;0
+font-4 = unifont:size=10;-3
+font-5 = siji:size=6;-3
+font-6 = FreeMono:size=10;0
 
-modules-left = i3 mpd
-#modules-center = mpd
-modules-right = home filesystem volume wlan eth battery temperature date powermenu
+
+
+
+modules-left =  i3 script  mpd  separator
+modules-center =   date battery xkeyboard  separator 
+modules-right = wlan eth xbacklight volume cpu temperature  powermenu 
 
 tray-position = right
-tray-padding = 0
+tray-padding = 2
 ;tray-transparent = true
 ;tray-background = #0063ff
 
@@ -67,12 +73,50 @@ tray-padding = 0
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+
+
+
+
+
+
+
+[module/separator]
+type = custom/text
+content = |
+content-foreground = #FFFFFF
+
+[module/script]
+type = custom/script
+exec = whoami
+
+
+
+[module/mpd]
+type = internal/mpd
+format-online = <icon-prev> <icon-stop> <icon-next> <label-song> <label-time>  <toggle>
+;format-online = <icon-prev> <icon-seekb> <icon-stop> <toggle> <icon-seekf> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
+
+label-song =  %artist% - %title%
+icon-prev = <-
+icon-stop = S
+icon-play-prefix = #f00
+icon-play = (Paused)
+icon-pause = 
+icon-next = ->
+
+bar-progress-width = 45
+bar-progress-indicator = |
+bar-progress-fill = -
+bar-progress-empty = -
+label-song-maxlen = 70
+label-song-ellipsis = true
+
+
+
+
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -90,25 +134,8 @@ label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
-[module/filesystem]
-type = internal/fs
-interval = 25
 
-mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/home]
-type = internal/fs
-interval = 25
-
-mount-0 = /home
-
-label-mounted = %{F#0a81f5}~%{F-}: %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
 [module/bspwm]
 type = internal/bspwm
 
@@ -162,29 +189,12 @@ label-urgent = %index%
 label-urgent-background = ${module/bspwm.label-urgent-background}
 label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
-[module/mpd]
-type = internal/mpd
-format-online = <label-song> <label-time> <toggle>
 
-;icon-prev = 
-;icon-stop = 
-;icon-play = 
-;icon-pause = 
-;icon-next = 
-icon-prev = <-
-icon-stop = X
-icon-play-prefix = #f00
-icon-play = (Paused)
-icon-pause = 
-icon-next = ->
 
-;bar-progress-width = 45
-;bar-progress-indicator = |
-;bar-progress-fill = -
-;bar-progress-empty = -
 
-label-song-maxlen = 70
-label-song-ellipsis = true
+
+
+
 
 [module/xbacklight]
 type = internal/xbacklight
@@ -214,7 +224,7 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
-label = %percentage%%
+label =CPU: %percentage%%
 
 [module/memory]
 type = internal/memory
@@ -226,23 +236,17 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp2s0
-interval = 3.0
+interface = wlp2s0 
+interval = 0.5
 
-;udspeed-minwidth = 5
-;accumulate-stats = true
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #9f78e1
+label-connected =  D:%downspeed% U:%upspeed% 
 
-;format-connected = <ramp-signal> <label-connected>
-;format-connected-underline = #9f78e1
-;format-connected-underline = #9f78e1
-;label-connected = %essid%
 
-;format-packetloss = <animation-packetloss> <label-connected>
 ;format-disconnected =
-;format-disconnected = <label-disconnected>
+format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
-;label-connected = %essid% %downspeed:9%
-;label-connected-foreground = #eefafafa
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
@@ -253,14 +257,12 @@ ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground-alt}
 
-
 [module/eth]
 type = internal/network
 interface = enp3s0
 interval = 3.0
 
-format-connected-underline = #5ab738
-;format-connected-underline = #55aa55
+format-connected-underline = #55aa55
 format-connected-prefix = " "
 format-connected-prefix-foreground = ${colors.foreground-alt}
 label-connected = %local_ip%
@@ -270,6 +272,7 @@ format-disconnected =
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
+
 
 [module/date]
 type = internal/date
@@ -289,6 +292,7 @@ format-underline = #407ee7
 ;format-underline = #0a6cf5
 
 label = %date% %time%
+
 
 [module/volume]
 type = internal/volume
@@ -317,6 +321,8 @@ bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
+
+
 
 [module/battery]
 type = internal/battery
@@ -347,14 +353,18 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground-alt}
 animation-charging-framerate = 750
 
+
+
+
+
+
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f22c40
-;format-underline = #f50a4d
+format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -367,18 +377,18 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground-alt}
 
+
+
 [module/powermenu]
 type = custom/menu
 
 format-spacing = 1
-
-label-open = 
+label-open = 
 label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-close = cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
-
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
 menu-0-1 = power off
@@ -394,6 +404,10 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
+format-padding = 1
+
+
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -404,3 +418,9 @@ screenchange-reload = true
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+
+; vim:ft=dosini
+
+
+
+
