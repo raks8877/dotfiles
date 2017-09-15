@@ -9,6 +9,8 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 # scrot & gimp - root
+
+
 #bindsym Print exec scrot -e  'mv $f /tmp/ && gimp /tmp/$f'
 bindsym Print exec scrot
 # scrot & gimp - select window or rectangle
@@ -23,8 +25,18 @@ gaps inner 5
 gaps outer  3 
 smart_gaps on
 
+#Gnome settings
+exec_always gnome-settings-daemon
+#vertical scroll
+exec_always synclient VertEdgeScroll=1 
+
 #wallpaper
 exec_always feh --bg-scale ~/Pictures/archlinux.jpg
+
+bindsym $mod+Shift+Home exec feh --bg-scale ~/Pictures/archlinux.jpg
+#random wallpaper
+bindsym $mod+Home exec feh --randomize --bg-scale ~/Pictures/wallpapers-master/*
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font xft:Sans 5 
@@ -40,7 +52,7 @@ font xft:Sans 5
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Stop and pause everyting
-bindsym $mod+Shift+Delete workspace 10;exec urxvt  -e cmatrix;split v;exec urxvt -e ranger;exec urxvt -e htop
+bindsym $mod+Shift+Delete workspace 10;focus parent,kill;exec urxvt  -e cmatrix;split v;exec urxvt -e ranger;exec urxvt -e htop
 
 
 bindsym $mod+Shift+y		resize shrink width 10 px or 10ppt
@@ -114,13 +126,21 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
-set $ws1 "1: &#xf120; terminal"
-set $ws2 "2: &#xf269; firefox"
-set $ws3 "3: &#xf1c8; vlc" 
-set $ws4 "4: &#xf0e0; mail"
-set $ws5 "5: &#xf07b; files" 
-set $ws6 "6: Music"
+#set $ws1 "1: &#xf120; terminal"
+#set $ws2 "2: &#xf269; firefox"
+#set $ws3 "3: &#xf1c8; vlc" 
+#set $ws4 "4: &#xf0e0; mail"
+#set $ws5 "5: &#xf07b; files" 
+#set $ws6 "6: Music"
 # switch to workspace
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+
+
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3 
