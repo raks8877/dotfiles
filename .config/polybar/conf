@@ -61,7 +61,7 @@ font-1 = FontAwesome:style=Regular:pixelsize=10;-2
 ;font-1 = Roboto:size=10;1
 
 
-modules-left =  i3 script separator mpd  
+modules-left =  i3  separator mpd  
 modules-center =     
 modules-right = powermenu 
 
@@ -78,8 +78,8 @@ tray-padding = 2
 ;scroll-up = bspwm-desknext
 ;scroll-down = bspwm-deskprev
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
 
 
 [bar/bottom]
@@ -224,7 +224,7 @@ label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %icon%
+label-unfocused = %index%
 label-unfocused-padding = ${module/bspwm.label-occupied-padding}
 
 ; visible = Active workspace on unfocused monitor
