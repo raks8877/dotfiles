@@ -17,13 +17,13 @@ bindsym Print exec scrot
 bindsym Mod1+Print exec scrot -s -e 'mv $f /tmp/ && gimp /tmp/$f'
 
 #exec --no-startup-id feh --bg-fill ~/Pictures/archlinux.jpg
-exec --no-startup-id nm-applet
+exec_always --no-startup-id nm-applet
 
 set $mod Mod4
 
 gaps inner 5
-gaps outer  3 
-smart_gaps on
+gaps outer 3
+
 
 #Gnome settings
 #exec_always gnome-settings-daemon
@@ -112,9 +112,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -266,8 +266,8 @@ bindsym $mod+Ctrl+s exec urxvt -e mpc stop
 bindsym $mod+Ctrl+Return exec urxvt -e mpc play
 bindsym $mod+Ctrl+p exec urxvt -e mpc pause
 #bindsym $mod+Ctrl+l exec urxvt -e mpc pause
-bindsym $mod+Ctrl+j exec urxvt -e mpc next
-bindsym $mod+Ctrl+k exec urxvt -e mpc prev
+bindsym $mod+Ctrl+k exec urxvt -e mpc next
+bindsym $mod+Ctrl+j exec urxvt -e mpc prev
 bindsym $mod+Ctrl+l exec urxvt -e less  ~/.lyrics/"$(mpc | grep -m1 "")".txt;
 
 
