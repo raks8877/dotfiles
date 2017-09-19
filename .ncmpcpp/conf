@@ -2,6 +2,8 @@ mpd_music_dir = "~/Music/"
 ncmpcpp_directory = "~/.ncmpcpp"
 lyrics_directory = "~/.lyrics"
 #execute_on_song_change = "~/.ncmpcpp/songchange.sh"
+# Lyrics
+fetch_lyrics_for_current_song_in_background = yes
  
 ## Unsupported mouse ##
 mouse_support = "yes"
