@@ -129,6 +129,10 @@ URxvt*color20:                        #b4b7b4
 !*.colorIT:
 !*.colorUL:URxvt*color21:                        #e0e0e0
 URxvt.letterSpace: -1
+
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
+
+Polybar*primary: ${xrdb:color2}
+Polybar*secondary: ${xrdb:color7}
