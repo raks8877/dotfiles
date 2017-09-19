@@ -37,7 +37,8 @@ exec_always feh --bg-scale ~/Pictures/archlinux.jpg
 
 bindsym $mod+Shift+Home exec feh --bg-scale ~/Pictures/archlinux.jpg
 #random wallpaper
-bindsym $mod+Home exec feh --randomize --bg-fill ~/Pictures/wallpapers-master/*
+#bindsym $mod+Home exec feh --randomize --bg-scale ~/Pictures/wallpapers-master/my/*
+bindsym $mod+Home exec python ~/.config/scripts/wallpaper.py
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -262,14 +263,22 @@ bindsym $mod+XF86AudioRaiseVolume exec $volInc
 
 #mpd & ncmpcpp config
 exec --no-startup-id mpd
-bindsym $mod+Ctrl+s exec urxvt -e mpc stop
-bindsym $mod+Ctrl+Return exec urxvt -e mpc play
-bindsym $mod+Ctrl+p exec urxvt -e mpc pause
-#bindsym $mod+Ctrl+l exec urxvt -e mpc pause
-bindsym $mod+Ctrl+k exec urxvt -e mpc next
-bindsym $mod+Ctrl+j exec urxvt -e mpc prev
-bindsym $mod+Ctrl+l exec urxvt -e less  ~/.lyrics/"$(mpc | grep -m1 "")".txt;
+bindsym $mod+Ctrl+s exec mpc stop
+bindsym $mod+Ctrl+Return exec  mpc play
+#bindsym $mod+Ctrl+p exec urxvt -e mpc pause
+bindsym $mod+Ctrl+p exec mpc pause
+bindsym $mod+Ctrl+k exec mpc next
+bindsym $mod+Ctrl+j exec mpc prev
+#bindsym $mod+Ctrl+l exec urxvt -e less  ~/.lyrics/"$(mpc | grep -m1 "")".txt
 
+#for_window [instance="__scratchpad"] move scratchpad 
+#exec_always --no-startup-id urxvt  -name __scratchpad
+#bindsym $mod+Ctrl+l scratchpad show
+#for_window [instance="__scratchpad"] floating enable
+#bindsym $mod+Ctrl+l exec urxvt __scratchpad
+bindsym $mod+Ctrl+l exec urxvt -name floating -e less  ~/.lyrics/"$(mpc | grep -m1 "")".txt 
+
+for_window [class="URxvt" instance="floating"] floating enable border pixel 3 
 
 
 exec i3-msg workspace 1
