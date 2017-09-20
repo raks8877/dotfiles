@@ -24,6 +24,8 @@ set $mod Mod4
 gaps inner 5
 gaps outer 3
 
+#Lock screen
+bindsym $mod+Ctrl+Shift+l exec --no-startup-id ~/.config/scripts/lock.sh
 
 #Gnome settings
 #exec_always gnome-settings-daemon
