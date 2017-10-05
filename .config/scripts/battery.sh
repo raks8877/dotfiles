@@ -82,3 +82,4 @@ if [ $PERCENT -gt "$(echo $ULIMIT)" ]; then
    		DISPLAY=:0.0  /usr/bin/i3-nagbar -m "$(echo $MESSAGE_FULL)"
 	fi
 fi
+
