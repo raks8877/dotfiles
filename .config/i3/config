@@ -283,13 +283,20 @@ bindsym $mod+Ctrl+k exec mpc next
 bindsym $mod+Ctrl+j exec mpc prev
 bindsym $mod+Ctrl+m exec urxvt -e ncmpcpp
 
-for_window [instance="__scratchpad"] move scratchpad 
-#exec_always killall urxvt
+for_window [instance="__scratchpad"] move scratchpad  
 exec_always --no-startup-id urxvt  -name __scratchpad
-bindsym $mod+Ctrl+z scratchpad show
-bindsym $mod+Ctrl+l exec urxvt -name floating -e less  ~/.lyrics/"$(mpc | grep -m1 "")".txt 
+bindsym $mod+Ctrl+z [instance="__scratchpad"] scratchpad show
 
-for_window [class="URxvt" instance="floating"] floating enable border pixel 3 
+for_window [instance="scratchpad_full"] move scratchpad
+exec_always --no-startup-id urxvt -name scratchpad_full
+bindsym Mod1+Ctrl+z [instance="scratchpad_full"] scratchpad show,fullscreen enable
+
+
+for_window [class="URxvt" instance="floating"] floating enable border pixel 3
+for_window [class="URxvt" instance="fullscreenMode"] fullscreen enable 
+
+bindsym $mod+Ctrl+l exec urxvt -name floating -e less  ~/.lyrics/"$(mpc | grep -m1 "")".txt 
+bindsym $mod+Shift+Return exec urxvt -name fullscreenMode  
 
 
 bindsym $mod+Ctrl+f exec xterm -e ranger
