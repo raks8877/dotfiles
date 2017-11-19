@@ -5,7 +5,7 @@ bindsym $mod+w exec "bash -c 'f(){ i3-msg exec urxvt,exec urxvt; sleep 0.2; i3-m
 #Removes black screen after inactivity
 #Use xet -q to check status
 exec_always xset -dpms
-exec_always xset s noblank
+#exec_always xset s noblank
 exec_always xset s off
 
 
@@ -186,6 +186,8 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+e exec killall i3-nagbar
+
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -311,3 +313,5 @@ exec --no-startup-id ~/.config/scripts/blurme -t 0.0000000001 &
 #exec_always killall nm-applet
 #exec_always sleep 2
 exec_always --no-startup-id nm-applet
+#exec_always amixer -D pulse set Master 20
+

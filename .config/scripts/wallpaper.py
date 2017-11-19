@@ -16,7 +16,10 @@ while img == images[0]:
 import os,sys
 os.system('killall blurme;sleep 1')
 
-os.system('wal -i '+str(images[0])+';sleep 1')
+os.system('wal -n -i '+str(images[0])+';sleep 1')
+os.system('feh --bg-scale '+str(images[0]))
 
-#wall = subprocess.Popen(['wal', '-i' , str(images[0]) ])
 os.system('nohup ~/.config/scripts/blurme -t 0.0000000001 > /dev/null 2>&1 &')
+
+
+

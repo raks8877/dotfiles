@@ -73,3 +73,6 @@ visualizer_color = "red"
 visualizer_look = "●●"
 visualizer_type = "wave" (spectrum/wave)
 #visualizer_type = "spectrum" (spectrum/wave)
+
+
+
