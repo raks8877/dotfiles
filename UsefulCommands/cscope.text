@@ -1,0 +1,24 @@
+Cscope
+
+Links:
+http://cscope.sourceforge.net/large_projects.html
+
+#: To build fresh code base
+cscope -R
+#: To reuse existing code base
+cscope -d
+
+#: Commands
+  ctrl + b: back history search 
+  ctrl + f: forward history search
+  ctrl + ] goto defination
+  ctrl + t goback
+
+#:tab to change between search result and new search
+
+#: If want to add some extension in cscope
+cd /
+find /ws/gitws/ -name '*.pm' -o -name '*.c' -o  -name '*.h' -o -name '*.eo' -o -name '*.pl' -o -name "*.sh" -o -name '*.py' > /ws/gitws/cscope.files
+
+#: To add vim as default in cscope
+  add "export CSCOPE_EDITOR=vim" to ~/.profile
