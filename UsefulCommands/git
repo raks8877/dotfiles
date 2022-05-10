@@ -1,0 +1,2 @@
+#: Previous commits for a file 
+  git log -p – filename > ~/out 
